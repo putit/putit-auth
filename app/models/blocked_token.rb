@@ -1,0 +1,2 @@
+class BlockedToken < ApplicationRecord
+end

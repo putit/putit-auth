@@ -1,0 +1,32 @@
+# These are Putit database configs based on SQLite3. They are meant for evaluation purposes only.
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 10
+  timeout: 10000
+
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 10
+  timeout: 10000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 10
+  timeout: 10000
+
+
+# This is an example of production-ready Putit database config based on PostgreSQL.
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: putit_auth
+#   host: 127.0.0.1
+#   port: 5432
+#   pool: 10
+#   username: putit
+#   password: putit
