@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore installed gems
+lib/
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -22,3 +25,7 @@
 pid.file
 vendor
 *.pid
+
+# app specific - comes from the templates
+config/thin.yml
+bin/run.sh
