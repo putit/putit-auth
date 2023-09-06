@@ -1,11 +1,15 @@
 # == Schema Information
 #
-# Table name: blocked_tokens
+# Table name: organizations
 #
 #  id         :integer          not null, primary key
-#  token      :string
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class BlockedToken < ApplicationRecord
+class Organization < ApplicationRecord
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
+  has_many :users
 end
