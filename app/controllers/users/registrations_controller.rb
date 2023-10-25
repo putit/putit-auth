@@ -2,18 +2,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include ActionController::MimeResponds
   respond_to :json
 
-  before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    super
-  end
-
-  # POST /resource
-  # def create
+  # def new
   #   super
   # end
+
+  # POST /resource
+  def create
+    super do |resource|
+      organization_name = params[:user][:organization_name] || Base64.strict_encode64(resource.email)
+      organization = Organization.find_or_create_by(name: organization_name)
+      resource.organization = organization
+      resource.save
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,11 +44,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
+  # protected
 
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:organization_id])
-  end
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:organization_id])
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
